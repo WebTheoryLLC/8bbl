@@ -3,7 +3,7 @@ class GamesController < ApplicationController
 		@game = Game.where(giantbomb_id: params[:game][:game_id]).first
 		current_user.gamelist.gamelistgames.create(game_id: @game.id)
 		if params[:game][:platforms]
-		  params[:game][:platforms][:id].each do |platform|
+		  params[:game][:platforms].each do |platform|
 		    current_user.gamelist.gamelistgames.where(game_id: @game.id).first.gamelistgameplatforms.create(platform_id: platform)
 		  end
 		end

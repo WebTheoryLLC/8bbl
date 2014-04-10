@@ -33,7 +33,7 @@
 		          <% result.platforms.each do |platform| %>
 		            <span class='select_platform'>
 									<label class="badge platform">
-										<%= check_box_tag "game[platforms][id][]", platform.id, false %>
+										<%= check_box_tag "game[platforms][]", platform.id, false, class: "platform_#{platform.id}" %>
 										<%= platform.name %>
 									</label>
 		            </span>
@@ -45,7 +45,7 @@
 					<% if !result.platforms.nil? %>
 						<div class="platforms">
 							<% result.platforms.each do |platform| %>
-								<span class="badge"><%= platform.abbreviation %></span>
+								<span class="badge"><%= platform.name %></span>
 							<% end %>
 						</div>
 					<% end %>
@@ -72,8 +72,6 @@
 	$(".platform").on("click", function( e ){
 		if( e.target.tagName.toUpperCase() !== 'INPUT' ) {
 			$(this).toggleClass("checked");
-        var cbox = $(this).find('input:checkbox')[0];
-        cbox.checked = !cbox.checked;
     }
 	});
 </script>

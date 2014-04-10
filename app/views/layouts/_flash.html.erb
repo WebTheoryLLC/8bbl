@@ -1,0 +1,9 @@
+<% flash().each do |key, msg| %>
+  <% key = "info" if key == "alert" %>
+  <% key = "warning" if key == "notice" %>
+  <div class="alert alert-<%= key %> fade in" style="position: absolute; width:100%; z-index: 1000;">
+    <%= link_to '&times;'.html_safe, '#', :class => 'close', 'data-dismiss' => 'alert' %>
+    <%= msg %>
+  </div>
+<% end %>
+<p class="notice" id="notice" style="display: none;"></p>

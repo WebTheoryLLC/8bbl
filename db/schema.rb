@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140410120614) do
+ActiveRecord::Schema.define(version: 20140410185526) do
 
   create_table "concepts", force: true do |t|
     t.string   "name"
@@ -42,13 +42,6 @@ ActiveRecord::Schema.define(version: 20140410120614) do
   create_table "gamegenres", force: true do |t|
     t.integer  "game_id"
     t.integer  "genre_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "gamelistgamedevelopers", force: true do |t|
-    t.integer  "gamelistgame_id"
-    t.integer  "developer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -111,6 +104,7 @@ ActiveRecord::Schema.define(version: 20140410120614) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "abbr"
   end
 
   create_table "publishers", force: true do |t|
@@ -156,8 +150,6 @@ ActiveRecord::Schema.define(version: 20140410120614) do
     t.string   "unconfirmed_email"
     t.string   "provider"
     t.string   "uid"
-    t.string   "login"
-    t.string   "name"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

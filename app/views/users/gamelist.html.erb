@@ -21,7 +21,7 @@
         <% if !gamelistgame.platforms.nil? %>
           <td>
             <% gamelistgame.platforms.each do |platform| %>
-              <span class="badge"><%= platform["abbreviation"] %></span>
+              <span class="badge"><%= platform.abbr %></span>
             <% end %>
           </td>
         <% else %>
@@ -31,7 +31,7 @@
         <% if !game.genres.nil? %>
         <td>
           <% game.genres.each do |genre| %>
-            <span class="badge"><% genre["name"] %></span>
+            <span class="badge"><%= genre.name %></span>
             <% end %>
         </td>
         <% else %>
@@ -41,7 +41,7 @@
         <% if !game.developers.nil? %>
           <td>
             <% game.developers.each do |developer| %>
-              <span class="badge"><%= developer["name"] %></span>
+              <span class="badge"><%= developer.name %></span>
             <% end %>
           </td>
         <% else %>

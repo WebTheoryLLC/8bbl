@@ -71,24 +71,19 @@ class Gamelist < ActiveRecord::Base
         end
       end
     end
-    binding.pry
     @developers = Hash[@developers.sort_by {|_, v| v}.reverse]
-    binding.pry
     @others = @developers
     @developers.first(5).each do |developer|
       @others = @others.except(developer.first)
     end
-    binding.pry
     if @others.count > 1
       @developers = @developers.first(5).push(["Others", 0])
-      binding.pry
       @others.to_a.each do |other|
         @other = @developers.pop
         @other[1] += other.last
         @developers.push(@other)
       end
     end
-    binding.pry
     @developers.to_a
   end
 end

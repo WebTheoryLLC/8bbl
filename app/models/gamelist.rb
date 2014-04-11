@@ -16,11 +16,23 @@ class Gamelist < ActiveRecord::Base
       end
     end
     @genres = Hash[@genres.sort_by {|_, v| v}.reverse]
-    @genres.first(5)
+    @others = @genres
+    @genres.first(5).each do |genre|
+      @others = @others.except(genre.first)
+    end
+    if @others.count > 1
+      @genres = @genres.first(5).push(["Others", 0]) 
+      @others.to_a.each do |other|
+        @other = @genres.pop
+        @other[1] += other.last
+        @genres.push(@other)
+      end      
+    end
+    @genres.to_a
   end
   
   def popular_platforms
-    @games = self.games
+    @games = self.gamelistgames
     @platforms = Hash.new
     @games.each do |game|
       game.platforms.each do |platform|
@@ -32,22 +44,51 @@ class Gamelist < ActiveRecord::Base
       end
     end
     @platforms = Hash[@platforms.sort_by {|_, v| v}.reverse]    
-    @platforms.first(5)
+    @others = @platforms
+    @platforms.first(5).each do |platform|
+      @others = @others.except(platform.first)
+    end
+    if @others.count > 1
+      @platforms = @platforms.first(5).push(["Others", 0])
+      @others.to_a.each do |other|
+        @other = @platforms.pop
+        @other[1] += other.last
+        @platforms.push(@other)
+      end
+    end
+    @platforms.to_a
   end
   
   def popular_developers
     @games = self.games
     @developers = Hash.new
-    @developers.each do |game|
+    @games.each do |game|
       game.developers.each do |developer|
-        if @developers[genre.name].nil?
-          @developers[genre.name] = 1
+        if @developers[developer.name].nil?
+          @developers[developer.name] = 1
         else
-          @developers[genre.name] += 1
+          @developers[developer.name] += 1
         end
       end
     end
+    binding.pry
     @developers = Hash[@developers.sort_by {|_, v| v}.reverse]
-    @developers.first(5)
+    binding.pry
+    @others = @developers
+    @developers.first(5).each do |developer|
+      @others = @others.except(developer.first)
+    end
+    binding.pry
+    if @others.count > 1
+      @developers = @developers.first(5).push(["Others", 0])
+      binding.pry
+      @others.to_a.each do |other|
+        @other = @developers.pop
+        @other[1] += other.last
+        @developers.push(@other)
+      end
+    end
+    binding.pry
+    @developers.to_a
   end
 end

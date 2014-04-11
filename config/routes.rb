@@ -13,4 +13,7 @@ Eightbitbacklog::Application.routes.draw do
   get 'gamelist', to: 'users#gamelist'
   delete 'gamelist', to: 'gamelists#destroy'
   
+  get 'profile', to: 'users#profile'
+  get "profile/:id", to: "users#profile"
+  
 end

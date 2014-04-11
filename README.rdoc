@@ -1,5 +1,26 @@
 == README
 
+v.0.06
+
+Things that are not working as intended:
+
+* Radio Buttons on Game List Page
+* Search form in navbar
+* Adding things to your profile requires a password! Problem is that when you sign in with say, twitter, you don't know what your password is!Disable it!
+
+Things that still need to be done:
+
+* Front page
+* Graphs on gamelist page
+* A user profile page (not just an edit page)
+* Recommendation Engine
+* Add picture to user profile
+
+Things done since last commit/version:
+* Lots o' bugs fixed
+
+
+
 v.0.05
 
 Things that are not working as intended:

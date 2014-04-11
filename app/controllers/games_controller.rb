@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+	before_action :authenticate_user!
 	def create
 		@game = Game.where(giantbomb_id: params[:game][:game_id]).first
 		current_user.gamelist.gamelistgames.create(game_id: @game.id)

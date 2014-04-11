@@ -31,9 +31,26 @@
 
     chart = new google.visualization.PieChart(document.getElementById('developerchart'));
     chart.draw(data, options);
+    
+    data = google.visualization.arrayToDataTable(<%= @status.to_json.html_safe %>);
+
+    options = {
+      title: 'Status by Percentage',
+      pieHole: 0.4,
+    };
+
+    chart = new google.visualization.PieChart(document.getElementById('playedchart'));
+    chart.draw(data, options);
   }
 </script>
 
-<div id="genrechart" style="width: 900px; height: 500px;"></div>
-<div id="platformchart" style="width: 900px; height: 500px;"></div>
-<div id="developerchart" style="width: 900px; height: 500px;"></div>
+<div class="container-fluid">
+  <div class="row">
+    <div id="genrechart" style="width: 50%; height: 500px;" class="col-lg-6"></div>
+    <div id="platformchart" style="width: 50%; height: 500px;" class="col-lg-6"></div>
+  </div>
+  <div class="row">
+    <div id="developerchart" style="width: 50%; height: 500px;" class="col-lg-6"></div>
+    <div id="playedchart" style="width: 50%; height: 500px;" class="col-lg-6"></div>
+  </div>
+</div>

@@ -86,4 +86,12 @@ class Gamelist < ActiveRecord::Base
     end
     @developers.to_a
   end
+  
+  def played_stats
+    @stats = []
+    @stats.push(["Beaten", self.gamelistgames.where(status: "Beaten").count])
+    @stats.push(["In Progress", self.gamelistgames.where(status: "In Progress").count])
+    @stats.push(["Have not Played", self.gamelistgames.where(status: "Have not Played").count])
+    @stats
+  end
 end

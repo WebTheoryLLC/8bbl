@@ -49,7 +49,7 @@ class GamesController < ApplicationController
       end
     end
 
-		current_user.gamelist.gamelistgames.create(game_id: @game.id)
+		current_user.gamelist.gamelistgames.create(game_id: @game.id, status: "Have not Played")
 		if params[:game][:platforms]
 		  params[:game][:platforms].each do |platform|
 		    current_user.gamelist.gamelistgames.where(game_id: @game.id).first.gamelistgameplatforms.create(platform_id: platform)

@@ -30,14 +30,16 @@
 							<%= f.hidden_field :game_id, value: result.id %>
 							<%= f.hidden_field :page, value: @page %>
 							<%= f.hidden_field :query, value: @query %>
-		          <% result.platforms.each do |platform| %>
-		            <span class='select_platform'>
-									<label class="badge platform">
-										<%= check_box_tag "game[platforms][]", Platform.find_by_name(platform["name"]).id, false, class: "platform_#{platform["name"]}" %>
-										<%= platform["name"] %>
-									</label>
-		            </span>
-		          <% end %>
+		          <% if !result.platforms.nil? %>
+  		          <% result.platforms.each do |platform| %>
+  		            <span class='select_platform'>
+  									<label class="badge platform">
+  										<%= check_box_tag "game[platforms][]", Platform.find_by_name(platform["name"]).id, false, class: "platform_#{platform["name"]}" %>
+  										<%= platform["name"] %>
+  									</label>
+  		            </span>
+  		          <% end %>
+							<% end %>
 							<button class = "btn-primary btn"><%= fa_icon "plus" %>&nbsp;Add Game to List</button>
 						<% end %>
 					<% end %>

@@ -14,6 +14,7 @@ class PagesController < ApplicationController
       @genres = ([["Genre", "Quantity of Games"]] + @user.gamelist.popular_genres)
       @platforms = ([["Platform", "Quantity of Platform"]] + @user.gamelist.popular_platforms)
       @developers = ([["Developer", "Quantity of Developer"]] + @user.gamelist.popular_developers)
+      @status = ([["Status", "Quantity of Games"]] + @user.gamelist.played_stats)
     end
   end
 

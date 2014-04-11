@@ -60,7 +60,7 @@
         <% end %>
 -->
 
-        <td id="five_stars">
+        <td class="five-stars">
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
@@ -68,12 +68,11 @@
           <i class="fa fa-star"></i>
         </td>
 
-        <td>
-          <span>
-            <input type="radio" name="status" value="Beaten"> Beaten &nbsp;
-            <input type="radio" name="status" value="In Progress"> In Progress &nbsp;
-            <input type="radio" name="status" valus="Haven't Played"> Haven't Played
-          </span>
+        <td class="game-status">
+          <%= form_for gamelistgame, method: :patch do |f| %>
+            <%= f.hidden_field :id %>
+            <%= f.collection_radio_buttons :status, [ ['Beaten'], ['In Progress'], ['Have not Played']], :first, :first %>
+          <% end %>
         </td>
 
         <td>
@@ -85,3 +84,8 @@
   <% end %>
   </table>
 </div>
+<script>
+  $('input[type=radio]').on("change", function(e){
+    $(this).parent().submit();
+  });
+</script>

@@ -1,6 +1,22 @@
 class PagesController < ApplicationController
   def index
   end
+  
+  def profile
+    if params[:username]
+      redirect_to root_path, notice: "User Does Not Exist" if User.where(:username => params[:username]).first.nil?
+      @user = User.where(:username => params[:username]).first
+    else
+      redirect_to root_path, notice: "User Does Not Exist" if !user_signed_in?
+      @user = current_user
+    end
+    if @user
+      @genres = ([["Genre", "Quantity of Games"]] + @user.gamelist.popular_genres)
+      @platforms = ([["Platform", "Quantity of Platform"]] + @user.gamelist.popular_platforms)
+      @developers = ([["Developer", "Quantity of Developer"]] + @user.gamelist.popular_developers)
+    end
+  end
+
 
   def search
     if params[:query]

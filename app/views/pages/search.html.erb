@@ -23,18 +23,18 @@
 					</div>
 				<% end %>
 				<% if user_signed_in? %>
-					<% if current_user.has_game?(result) %>
+					<% if current_user.has_game?(Game.where(:giantbomb_id => result.id).first) %>
 						<div><%= fa_icon "check" %> Game is already in List</div>
 					<% else %>
 						<%= form_for Game.new do |f| %>
-							<%= f.hidden_field :game_id, value: result.giantbomb_id %>
+							<%= f.hidden_field :game_id, value: result.id %>
 							<%= f.hidden_field :page, value: @page %>
 							<%= f.hidden_field :query, value: @query %>
 		          <% result.platforms.each do |platform| %>
 		            <span class='select_platform'>
 									<label class="badge platform">
-										<%= check_box_tag "game[platforms][]", platform.id, false, class: "platform_#{platform.id}" %>
-										<%= platform.name %>
+										<%= check_box_tag "game[platforms][]", Platform.find_by_name(platform["name"]).id, false, class: "platform_#{platform["name"]}" %>
+										<%= platform["name"] %>
 									</label>
 		            </span>
 		          <% end %>

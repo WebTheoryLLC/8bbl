@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
 
-#   validates_uniqueness_of :username
-#   validates_presence_of :username
+		validates_uniqueness_of :username
+		validates_presence_of :username
 #   validates_presence_of :email
 
 	validates :username, :uniqueness => { :case_sensitive => false }
@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
 		    user.provider = auth.provider
 		    user.uid = auth.uid
 		    user.email = auth.info.email
+				user.username = auth.info.nickname
 		    user.password = Devise.friendly_token[0,20]
 				user.first_name = auth.info.first_name
 				user.last_name = auth.info.last_name

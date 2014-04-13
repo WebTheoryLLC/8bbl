@@ -7,14 +7,16 @@ Eightbitbacklog::Application.routes.draw do
   get "pages/index"
 
   root 'pages#index'
-  
+
   resource :games
   resource :gamelistgame
-  
+
   get 'gamelist', to: 'users#gamelist'
+  get 'gamelist/:username', to: 'users#gamelist'
   delete 'gamelist', to: 'gamelists#destroy'
-  
+
   get 'profile', to: 'pages#profile'
-  get "profile/:username", to: "pages#profile"
-  
+  get 'profile/:username', to: 'pages#profile'
+  get 'stats', to: 'pages#stats'
+
 end

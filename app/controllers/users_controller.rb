@@ -2,9 +2,12 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def gamelist
+    @from_params = false
     if params[:username]
-      redirect_to root_path, notice: "User Does Not Exist" if User.where(:username => params[:username]).first.nil?
-      @games = User.where(username: params[:username]).first.gamelist.gamelistgames
+      @user = User.where(:username => params[:username]).first
+      redirect_to root_path, notice: "User Does Not Exist" if @user.nil?
+      @games = @user.gamelist.gamelistgames
+      @from_params = true
     else
       @games = current_user.gamelist.gamelistgames
     end

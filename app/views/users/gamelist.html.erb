@@ -1,5 +1,9 @@
 <div class="container-fluid">
-  <h2>My Bucketlist</h2>
+  <% if !@from_params %>
+    <h2>My Bucketlist</h2>
+  <% else %>
+    <h2><%= @user.username %>'s Bucketlist</h2>
+  <% end %>
   <table class="table table-striped" id="yourgamelist" align="center">
     <thead>
       <tr>
@@ -83,7 +87,7 @@
     </tbody>
   <% end %>
   </table>
-  <% if user_signed_in? %>
+  <% if user_signed_in? && !@from_params %>
   <h2>Suggested Games</h2>
   <table class="table table-striped" id="gamesuggestions" align="center">
     <% @giantbomb_suggestions.each do |game| %>

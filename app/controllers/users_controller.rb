@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def gamelist
     if params[:username]
-      @games = Users.where(username: parmas[:username]).first.gamelist.gamelistgames
+      @games = Users.where(username: params[:username]).first.gamelist.gamelistgames
     else
       @games = current_user.gamelist.gamelistgames
     end

@@ -6,9 +6,9 @@ Eightbitbacklog::Application.initialize!
 
 ActionMailer::Base.smtp_settings = {
   :port =>          '587',
-  :address =>        'http://smtp.mandrillapp.com',
+  :address =>        'smtp.mandrillapp.com',
   :user_name =>      ENV['MANDRILL_USERNAME'],
   :password =>      ENV['MANDRILL_APIKEY'],
-  :domain =>        'http://heroku.com',
+  :domain =>        'heroku.com',
   :authentication => :plain
 }

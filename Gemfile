@@ -7,6 +7,7 @@ gem 'rails', github: 'rails/rails', branch: '4-1-stable'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 gem 'bootstrap-sass'
+gem 'bootstrap_form'
 
 gem 'devise'
 

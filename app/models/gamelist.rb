@@ -56,4 +56,64 @@ class Gamelist < ActiveRecord::Base
     @stats.push(["Have not Played", self.gamelistgames.where(status: "Have not Played").count])
     @stats
   end
+  
+  def suggested_games
+    @concepts = {}
+    self.gamelistgames.each do |gamelistgame|
+      gamelistgame.game.concepts.each do |concept|
+        if @concepts[concept.name]
+          @concepts[concept.name] += 1
+        else
+          @concepts[concept.name] = 1
+        end
+      end
+    end
+    @data = Hash[@concepts.sort_by {|_, v| v}.reverse]
+    @data_per_game = {}
+    @data.first(10).each do |key, _|
+      @data_per_game[key] = Game.includes(:concepts).where(concepts: {name: key}).count
+    end
+    @data_per_game = Hash[@data_per_game.sort_by {|_, v| v}.reverse]
+    @suggestions = []
+    @data_per_game.each do |key, _|
+      Game.includes(:concepts).where(concepts: {name: key}).first(2).each do |game|
+        if !@suggestions.include?(game)
+          @suggestions.push(game)
+        end
+      end      
+    end    
+    @giantbomb_suggestions = []
+    @suggestions.each do |suggestion|
+      @resultgame = GiantBomb::Game.detail(suggestion.giantbomb_id)
+      @count = 2
+      if !@resultgame.similar_games.nil?
+        @similar_games = similar_games(@resultgame, @count)
+        while @similar_games.count == 0 do
+          @count++
+          @similar_games = similar_games(@resultgame, @count)
+        end
+        @similar_games.each do |game|
+          @giantbomb_suggestions = @giantbomb_suggestions + game if !@giantbomb_suggestions.include?(game)
+        end
+      end
+    end
+    @giantbomb_suggestions 
+  end
+  
+  private
+  
+  def similar_games(resultgame, count)
+    @giantbomb_suggestions = []
+    resultgame.similar_games.first(count+1).each do |game|
+      @game = {}
+      @game["giantbomb_id"] = game["id"]
+      @game["name"] = game["name"]
+      if Game.find_by_giantbomb_id(@game["giantbomb_id"])
+        @giantbomb_suggestions.push(@game) if !self.games.include?(Game.find_by_giantbomb_id(@game["giantbomb_id"]))
+      else
+        @giantbomb_suggestions.push(@game)
+      end
+    end
+    @giantbomb_suggestions
+  end
 end

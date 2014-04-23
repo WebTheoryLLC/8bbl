@@ -138,4 +138,10 @@ class PagesController < ApplicationController
     @top_game_developers   = [["Developer", "Quantity of Games"]] + group_for_graph(@top_game_developers, 8)
     @top_games_playing_now = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games_playing_now, 8)
   end
+  
+  def user_signin_up
+    if user_signed_in?
+      redirect_to root_path
+    end    
+  end
 end

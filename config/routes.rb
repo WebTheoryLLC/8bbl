@@ -10,6 +10,9 @@ Eightbitbacklog::Application.routes.draw do
 
   resource :games
   resource :gamelistgame
+  resource :user
+  
+  get 'settings', to: 'users#edit'
 
   get 'gamelist', to: 'users#gamelist'
   get 'gamelist/:username', to: 'users#gamelist'
@@ -18,5 +21,7 @@ Eightbitbacklog::Application.routes.draw do
   get 'profile', to: 'pages#profile'
   get 'profile/:username', to: 'pages#profile'
   get 'stats', to: 'pages#stats'
+  
+  get 'signin-up', to: 'pages#user_signin_up'
 
 end

@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
   def gamelist
     if params[:username]
-      @games = Users.where(username: params[:username]).first.gamelist.gamelistgames
+      redirect_to root_path, notice: "User Does Not Exist" if User.where(:username => params[:username]).first.nil?
+      @games = User.where(username: params[:username]).first.gamelist.gamelistgames
     else
       @games = current_user.gamelist.gamelistgames
     end

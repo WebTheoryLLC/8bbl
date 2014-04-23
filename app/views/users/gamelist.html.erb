@@ -13,7 +13,9 @@
         <th>Developer</th>
         <th>User Rating</th>
         <th>Status</th>
-        <th>Actions</th>
+        <% if !@from_params %>
+          <th>Actions</th>
+        <% end %>
       </tr>
     </thead>
   <% @games.each do |gamelistgame| %>
@@ -94,10 +96,7 @@
   
           <td class="game-status">
               <%= gamelistgame.status %>
-          </td>
-  
-          <td>
-          </td>  
+          </td> 
         <% end %>
       </tr>
     </tbody>

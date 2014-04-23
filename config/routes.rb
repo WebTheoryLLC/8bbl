@@ -16,10 +16,12 @@ Eightbitbacklog::Application.routes.draw do
 
   get 'gamelist', to: 'users#gamelist'
   get 'gamelist/:username', to: 'users#gamelist'
+  get 'gamelist/:id', to: 'users#gamelist'
   delete 'gamelist', to: 'gamelists#destroy'
 
   get 'profile', to: 'pages#profile'
   get 'profile/:username', to: 'pages#profile'
+  get 'profile/:id', to: 'pages#profile'
   get 'stats', to: 'pages#stats'
   
   get 'signin-up', to: 'pages#user_signin_up'

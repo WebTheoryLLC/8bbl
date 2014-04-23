@@ -89,7 +89,7 @@ class Gamelist < ActiveRecord::Base
       if !@resultgame.similar_games.nil?
         @similar_games = similar_games(@resultgame, @count)
         while @similar_games.count == 0 do
-          @count++
+          @count = @count + 1
           @similar_games = similar_games(@resultgame, @count)
         end
         @similar_games.each do |game|

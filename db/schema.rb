@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140423060821) do
     t.string   "esrb"
     t.integer  "rating"
     t.integer  "userrating"
-    t.text     "deck",         limit: 500
+    t.text     "deck",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "giantbomb_id"

@@ -1,4 +1,6 @@
 <script type="text/javascript">
+  $("title").text("<%= @user.username %>'s Profile");
+  
   google.load("visualization", "1", {packages:["corechart"]});
   google.setOnLoadCallback(drawChart);
   function drawChart() {
@@ -43,7 +45,9 @@
     chart.draw(data, options);
   }
 </script>
+<h2><%= @user.username %>'s Profile</h2>
 
+<h2>Stats</h2>
 <div class="container-fluid">
   <div class="row">
     <div id="genrechart" style="width: 50%; height: 500px;" class="col-lg-6"></div>

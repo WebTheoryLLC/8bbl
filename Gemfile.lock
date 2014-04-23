@@ -68,6 +68,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
+    bootstrap_form (2.1.1)
     builder (3.2.2)
     certified (0.1.1)
     coderay (1.1.0)
@@ -217,6 +218,7 @@ DEPENDENCIES
   awesome_print
   better_errors
   bootstrap-sass
+  bootstrap_form
   certified
   coffee-rails (~> 4.0.0)
   devise

@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="row">
+      <div class="col-xs-6 col-sm-4 col-sm-offset-4">
+        <h2>Sign in or authenticate with a provider</h2>
+        
+        <li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %></li>
+        <li><%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %></li>
+      </div>
+    </div>
+</div>

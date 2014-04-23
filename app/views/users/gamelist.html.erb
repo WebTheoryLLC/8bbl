@@ -83,6 +83,14 @@
     </tbody>
   <% end %>
   </table>
+  <% if user_signed_in? %>
+  <h2>Suggested Games</h2>
+  <table class="table table-striped" id="gamesuggestions" align="center">
+    <% @giantbomb_suggestions.each do |game| %>
+      <tr><td><%= link_to game["name"], search_path(query: game["name"]) %></td></tr>
+    <% end %>
+  </table>
+  <% end %>
 </div>
 <script>
   $('input[type=radio]').on("change", function(e){

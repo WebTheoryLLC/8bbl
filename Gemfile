@@ -21,6 +21,8 @@ gem 'omniauth-twitter'
 
 gem 'pg'
 
+gem 'rails_12factor'
+
 gem 'twitch'
 
 

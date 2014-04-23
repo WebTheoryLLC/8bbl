@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140410185526) do
+ActiveRecord::Schema.define(version: 20140423060821) do
 
   create_table "concepts", force: true do |t|
     t.string   "name"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140410185526) do
     t.string   "esrb"
     t.integer  "rating"
     t.integer  "userrating"
-    t.string   "deck"
+    t.text     "deck",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "giantbomb_id"

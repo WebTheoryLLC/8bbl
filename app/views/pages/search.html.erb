@@ -32,6 +32,7 @@
 							<%= f.hidden_field :query, value: @query %>
 		          <% if !result.platforms.nil? %>
   		          <% result.platforms.each do |platform| %>
+  		            <span>Choose your platforms!&nsbp;</span>
   		            <span class='select_platform'>
   									<label class="badge platform">
   										<%= check_box_tag "game[platforms][]", Platform.find_by_name(platform["name"]).id, false, class: "platform_#{platform["name"]}" %>

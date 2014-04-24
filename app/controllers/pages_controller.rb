@@ -75,7 +75,7 @@ class PagesController < ApplicationController
     @top_game_platforms = {}
     @top_game_developers = {}
     @top_games_playing_now = {}
-    
+
     @gamelistgames.each do |gamelistgame|
       @game = Game.find(gamelistgame.game_id)
 
@@ -104,12 +104,12 @@ class PagesController < ApplicationController
 
     @top_games_playing_now["No Games In Progress Now"] = 1 if @top_games_playing_now.count == 0
 
-    @top_games             = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games, 10)
-    @top_game_genres       = [["Genre", "Quantity of Games"]]     + group_for_graph(@top_game_genres, 10)
-    @top_games_beaten      = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games_beaten, 10)
-    @top_game_platforms    = [["Platform", "Quantity of Games"]]  + group_for_graph(@top_game_platforms, 10)
-    @top_game_developers   = [["Developer", "Quantity of Games"]] + group_for_graph(@top_game_developers, 10)
-    @top_games_playing_now = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games_playing_now, 10)
+    @top_games             = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games, 10, false)
+    @top_game_genres       = [["Genre", "Quantity of Games"]]     + group_for_graph(@top_game_genres, 10, false)
+    @top_games_beaten      = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games_beaten, 10, false)
+    @top_game_platforms    = [["Platform", "Quantity of Games"]]  + group_for_graph(@top_game_platforms, 10, false)
+    @top_game_developers   = [["Developer", "Quantity of Games"]] + group_for_graph(@top_game_developers, 10, false)
+    @top_games_playing_now = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games_playing_now, 10, false)
   end
 
   def user_signin_up

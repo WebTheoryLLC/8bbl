@@ -6,12 +6,16 @@ module ApplicationHelper
     @data.first(top_count).each do |genre|
       @others = @others.except(genre.first)
     end
-    if @others.count > 1 && show_other
+    if @others.count > 1
       @data = @data.first(top_count).push(["Others", 0])
-      @others.to_a.each do |other|
-        @other = @data.pop
-        @other[1] += other.last
-        @data.push(@other)
+      if show_other
+        @others.to_a.each do |other|
+          @other = @data.pop
+          @other[1] += other.last
+          @data.push(@other)
+        end
+      else
+        @data.pop
       end
     end
     @data.to_a

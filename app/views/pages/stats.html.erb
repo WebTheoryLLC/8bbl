@@ -5,7 +5,7 @@
     var data = google.visualization.arrayToDataTable(<%= @top_games.to_json.html_safe %>);
 
     var options = {
-      title: 'Popular Games by Percentage',
+      title: 'Popular Games by Percentage(Out of <%= @gamelistgames_count %>)',
       pieHole: 0.4,
     };
 
@@ -15,7 +15,7 @@
     data = google.visualization.arrayToDataTable(<%= @top_game_platforms.to_json.html_safe %>);
 
     options = {
-      title: 'Popular Platforms by Percentage',
+      title: 'Popular Platforms by Percentage(Out of <%= @platform_count %>)',
       pieHole: 0.4,
     };
 
@@ -25,7 +25,7 @@
     data = google.visualization.arrayToDataTable(<%= @top_game_developers.to_json.html_safe %>);
 
     options = {
-      title: 'Popular Developers by Percentage',
+      title: 'Popular Developers by Percentage(Out of <%= @developer_count %>)',
       pieHole: 0.4,
     };
 
@@ -35,7 +35,7 @@
     data = google.visualization.arrayToDataTable(<%= @top_game_genres.to_json.html_safe %>);
 
     options = {
-      title: 'Popular Genres by Percentage',
+      title: 'Popular Genres by Percentage(Out of <%= @genre_count %>)',
       pieHole: 0.4,
     };
 
@@ -45,7 +45,7 @@
     data = google.visualization.arrayToDataTable(<%= @top_games_beaten.to_json.html_safe %>);
 
     options = {
-      title: 'Top Games Beaten',
+      title: 'Top Games Beaten(Out of <%= @games_beaten_count %>)',
       pieHole: 0.4,
     };
 
@@ -55,7 +55,7 @@
     data = google.visualization.arrayToDataTable(<%= @top_games_playing_now.to_json.html_safe %>);
 
     options = {
-      title: 'Top Games In Progress Now',
+      title: 'Top Games In Progress Now(Out of <%= @games_in_progress_count %>)',
       pieHole: 0.4,
     };
 
@@ -64,6 +64,24 @@
   }
 </script>
 <h2 style="text-align: center;">Stats From Across The Site</h2>
+<div class="container">
+  <div class="row other_stats">
+    <div class="col-lg-6 stat_titles">
+      <ul>
+        <li>Number of Users:</li>
+        <li>Games in the Database:</li>
+        <li>Concpets form Games:</li>
+      </ul>
+    </div>
+    <div class="col-lg-6 stat_counts">
+      <ul>
+        <li><%= @user_count %></li>
+        <li><%= @games_count %></li>
+        <li><%= @concept_count %></li>
+      </ul>
+    </div>
+  </div>
+</div>
 <div class="container-fluid">
   <div class="row">
     <div id="popgamechart" style="width: 50%; height: 500px;" class="col-lg-6"></div>

@@ -1,8 +1,8 @@
 @import "bootstrap";
 
 .alert {
-   position: absolute; 
-   width:100%; 
+   position: absolute;
+   width:100%;
    z-index: 1000;
    margin-top: -20px;
 }
@@ -12,18 +12,23 @@
 }
 
 .platform {
-
   input {
     display: none;
   }
 }
 
-.jumbotron {
-
+.badge.platform {
+  cursor: pointer;
 }
 
-.badge.platform {
+.other_stats {
 
-cursor: pointer;
+  ul {
+    list-style-type: none;
+  }
 
+  .stat_titles {
+    font-weight: bold;
+    text-align: right;
+  }
 }

@@ -100,8 +100,11 @@ class PagesController < ApplicationController
       end
     end
 
+    @top_games["No Game Stats"] = 1 if @top_games.count = 0
+    @top_game_genres["No Genre Stats"] = 1 if @top_game_genres.count = 0
     @top_games_beaten["No Games Beaten"] = 1 if @top_games_beaten.count == 0
-
+    @top_game_platforms["No Platform Stats"] = 1 if @top_game_platforms.count = 0
+    @top_game_developers["No Developer Stats"] = 1 if @top_game_developers.count = 0
     @top_games_playing_now["No Games In Progress Now"] = 1 if @top_games_playing_now.count == 0
 
     @top_games             = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games, 10, false)

@@ -75,51 +75,28 @@ class PagesController < ApplicationController
     @top_game_platforms = {}
     @top_game_developers = {}
     @top_games_playing_now = {}
+    
     @gamelistgames.each do |gamelistgame|
-      if @top_games[Game.find(gamelistgame.game_id).name]
-        @top_games[Game.find(gamelistgame.game_id).name] += 1
-      else
-        @top_games[Game.find(gamelistgame.game_id).name] = 1
+      @game = Game.find(gamelistgame.game_id)
+
+      @top_games[@game.name] = @top_games[@game.name] ? @top_games[@game.name] + 1 : 1
+
+      @game.developers.each do |developer|
+        @top_game_developers[developer.name] = @top_game_developers[developer.name] ? @top_game_developers[developer.name] + 1 : 1
       end
 
-      Game.find(gamelistgame.game_id).developers.each do |developer|
-        if @top_game_developers[developer.name]
-          @top_game_developers[developer.name] += 1
-        else
-          @top_game_developers[developer.name] = 1
-        end
+      @game.genres.each do |genre|
+        @top_game_genres[genre.name] = @top_game_genres[genre.name] ? @top_game_genres[genre.name] + 1 : 1
       end
 
-      Game.find(gamelistgame.game_id).genres.each do |genre|
-        if @top_game_genres[genre.name]
-          @top_game_genres[genre.name] += 1
-        else
-          @top_game_genres[genre.name] = 1
-        end
-      end
-
-      Game.find(gamelistgame.game_id).platforms.each do |platform|
-        if @top_game_platforms[platform.name]
-          @top_game_platforms[platform.name] += 1
-        else
-          @top_game_platforms[platform.name] = 1
-        end
+      @game.platforms.each do |platform|
+        @top_game_platforms[platform.name] = @top_game_platforms[platform.name] ? @top_game_platforms[platform.name] + 1 : 1
       end
 
       if gamelistgame.status == "Beaten"
-        @game = Game.find(gamelistgame.game_id)
-        if @top_games_beaten[@game.name]
-          @top_games_beaten[@game.name] += 1
-        else
-          @top_games_beaten[@game.name] = 1
-        end
+        @top_games_beaten[@game.name] = @top_games_beaten[@game.name] ? @top_games_beaten[@game.name] + 1 : 1
       elsif gamelistgame.status == "In Progress"
-        @game = Game.find(gamelistgame.game_id)
-        if @top_games_playing_now[@game.name]
-          @top_games_playing_now[@game.name] += 1
-        else
-          @top_games_playing_now[@game.name] = 1
-        end
+        @top_games_playing_now[@game.name] = @top_games_playing_now[@game.name] ? @top_games_playing_now[@game.name] + 1 : 1
       end
     end
 

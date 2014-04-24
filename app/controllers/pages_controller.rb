@@ -123,25 +123,21 @@ class PagesController < ApplicationController
       end
     end
 
-    if @top_games_beaten.count == 0
-      @top_games_beaten["No Games Beaten"] = 1
-    end
+    @top_games_beaten["No Games Beaten"] = 1 if @top_games_beaten.count == 0
 
-    if @top_games_playing_now.count == 0
-      @top_games_playing_now["No Games In Progress Now"] =1
-    end
+    @top_games_playing_now["No Games In Progress Now"] = 1 if @top_games_playing_now.count == 0
 
-    @top_games             = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games, 8)
-    @top_game_genres       = [["Genre", "Quantity of Games"]]     + group_for_graph(@top_game_genres, 8)
-    @top_games_beaten      = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games_beaten, 8)
-    @top_game_platforms    = [["Platform", "Quantity of Games"]]  + group_for_graph(@top_game_platforms, 8)
-    @top_game_developers   = [["Developer", "Quantity of Games"]] + group_for_graph(@top_game_developers, 8)
-    @top_games_playing_now = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games_playing_now, 8)
+    @top_games             = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games, 10)
+    @top_game_genres       = [["Genre", "Quantity of Games"]]     + group_for_graph(@top_game_genres, 10)
+    @top_games_beaten      = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games_beaten, 10)
+    @top_game_platforms    = [["Platform", "Quantity of Games"]]  + group_for_graph(@top_game_platforms, 10)
+    @top_game_developers   = [["Developer", "Quantity of Games"]] + group_for_graph(@top_game_developers, 10)
+    @top_games_playing_now = [["Game", "Quantity of Games"]]      + group_for_graph(@top_games_playing_now, 10)
   end
-  
+
   def user_signin_up
     if user_signed_in?
       redirect_to root_path
-    end    
+    end
   end
 end

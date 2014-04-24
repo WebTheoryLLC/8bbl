@@ -15,11 +15,11 @@ Eightbitbacklog::Application.routes.draw do
   get 'settings', to: 'users#edit'
 
   get 'gamelist', to: 'users#gamelist'
-  get 'gamelist/:username', to: 'users#gamelist', requirements: { :username => /.*/}
+  get 'gamelist/:username', to: 'users#gamelist', constraints: { :username => /.*/}
   delete 'gamelist', to: 'gamelists#destroy'
 
   get 'profile', to: 'pages#profile'
-  get 'profile/:username', to: 'pages#profile', requirements: { :username => /.*/}
+  get 'profile/:username', to: 'pages#profile', constraints: { :username => /.*/}
   get 'stats', to: 'pages#stats'
   
   get 'signin-up', to: 'pages#user_signin_up'

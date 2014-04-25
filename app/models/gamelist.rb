@@ -82,7 +82,7 @@ class Gamelist < ActiveRecord::Base
 
     @giantbomb_suggestions = []
     @suggestions.each do |suggestion|
-      puts "[suggestion] #{suggestion}"
+      puts "[suggestion] #{@suggestions.nil?}"
       @resultgame = GiantBomb::Game.detail(suggestion.giantbomb_id)
       puts "[suggestion] got game"
       @count = 2

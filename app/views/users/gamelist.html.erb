@@ -1,3 +1,16 @@
+<script>
+  $('form').submit(function(e) {
+    e.preventDefault();
+    var valuesToSubmit = $(this).serialize();
+    $.ajax({
+        url: $(this).attr('action'),
+        data: valuesToSubmit,
+        dataType: "JSON"
+    }).success(function(json){
+        //act on result.
+    });
+  });
+</script>
 <div class="container-fluid">
   <% if !@from_params %>
     <h2>My Bucketlist</h2>
@@ -62,14 +75,14 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
           </td>
-  
+
           <td class="game-status">
             <%= form_for gamelistgame, method: :patch do |f| %>
               <%= f.hidden_field :id %>
               <%= f.collection_radio_buttons :status, [ ['Beaten'], ['In Progress'], ['Have not Played']], :first, :first %>
             <% end %>
           </td>
-  
+
           <td>
             <%= link_to "E", gamelist_path(id: game.id), method: :get, class: "btn btn-default" %>
             <%= link_to "R", gamelist_path(id: game.id), method: :delete, class: "btn btn-danger" %>
@@ -82,10 +95,10 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
           </td>
-  
+
           <td class="game-status">
               <%= gamelistgame.status %>
-          </td> 
+          </td>
         <% end %>
       </tr>
     </tbody>

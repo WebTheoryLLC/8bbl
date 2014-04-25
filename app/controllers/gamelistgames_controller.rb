@@ -3,8 +3,7 @@ class GamelistgamesController < ApplicationController
 
   def update
     @game = Gamelistgame.find(params[:gamelistgame][:id])
-    @game.update_attributes(gamelistgame_params)
-    # redirect_to gamelist_path  
+    @game.update_attributes(gamelistgame_params)  
   end
 
   private

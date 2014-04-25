@@ -2,12 +2,14 @@ class GamelistgamesController < ApplicationController
 	before_action :authenticate_user!
 
   def update
-    @game = Gamelistgame.find(params[:gamelistgame][:id])
-    @game.update_attributes(gamelistgame_params)
+		if params[:gamelistgame][:id]
+	    @game = Gamelistgame.find(params[:gamelistgame][:id])
+	    @game.update_attributes(gamelistgame_params)
+		end
 		respond_to do |format|
 			format.html { redirect_to gamelist_path }
 			format.json { render json: {} }
-		end  
+		end
   end
 
   private

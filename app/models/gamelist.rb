@@ -86,15 +86,18 @@ class Gamelist < ActiveRecord::Base
       @resultgame = GiantBomb::Game.detail(suggestion.giantbomb_id)
       @count = 2
       if !@resultgame.similar_games.nil?
+        puts "[suggestion] have similer"
         @similar_games = similar_games(@resultgame, @count)
         while @similar_games.count == 0 do
           @count = @count + 1
           @similar_games = similar_games(@resultgame, @count)
         end
         @similar_games.each do |game|
+          puts "[suggestion] add similer"
           @giantbomb_suggestions = @giantbomb_suggestions + game if !@giantbomb_suggestions.include?(game)
         end
       end
+      puts "[END]"
     end
     @giantbomb_suggestions
   end

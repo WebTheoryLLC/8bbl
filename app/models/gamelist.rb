@@ -79,9 +79,10 @@ class Gamelist < ActiveRecord::Base
       end
     end
     @suggestions = @suggestions ? @suggestions : []
-    puts "[suggestions] #{@suggestions}"
+
     @giantbomb_suggestions = []
     @suggestions.each do |suggestion|
+      puts "[suggestion] #{suggestion}"
       @resultgame = GiantBomb::Game.detail(suggestion.giantbomb_id)
       @count = 2
       if !@resultgame.similar_games.nil?

@@ -61,7 +61,7 @@ class Gamelist < ActiveRecord::Base
     @concepts = {}
     self.gamelistgames.each do |gamelistgame|
       gamelistgame.game.concepts.each do |concept|
-        if @concepts[concept.name] ? @concepts[concept.name] + 1 : 1
+        @concepts[concept.name] = @concepts[concept.name] ? @concepts[concept.name] + 1 : 1
       end
     end
     @data = Hash[@concepts.sort_by {|_, v| v}.reverse]

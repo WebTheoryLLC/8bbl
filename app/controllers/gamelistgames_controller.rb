@@ -3,7 +3,11 @@ class GamelistgamesController < ApplicationController
 
   def update
     @game = Gamelistgame.find(params[:gamelistgame][:id])
-    @game.update_attributes(gamelistgame_params)  
+    @game.update_attributes(gamelistgame_params)
+		respond_to do |format|
+			format.html { redirect_to gamelist_path }
+			format.json { render json: {} }
+		end  
   end
 
   private

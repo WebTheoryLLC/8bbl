@@ -56,32 +56,30 @@ class Gamelist < ActiveRecord::Base
     @stats.push(["Have not Played", self.gamelistgames.where(status: "Have not Played").count])
     @stats
   end
-  
+
   def suggested_games
     @concepts = {}
     self.gamelistgames.each do |gamelistgame|
       gamelistgame.game.concepts.each do |concept|
-        if @concepts[concept.name]
-          @concepts[concept.name] += 1
-        else
-          @concepts[concept.name] = 1
-        end
+        if @concepts[concept.name] ? @concepts[concept.name] + 1 : 1
       end
     end
     @data = Hash[@concepts.sort_by {|_, v| v}.reverse]
+
     @data_per_game = {}
     @data.first(10).each do |key, _|
       @data_per_game[key] = Game.includes(:concepts).where(concepts: {name: key}).count
     end
     @data_per_game = Hash[@data_per_game.sort_by {|_, v| v}.reverse]
+
     @suggestions = []
     @data_per_game.each do |key, _|
       Game.includes(:concepts).where(concepts: {name: key}).first(2).each do |game|
-        if !@suggestions.include?(game)
-          @suggestions.push(game)
-        end
-      end      
-    end    
+        @suggestions.push(game) if !@suggestions.include?(game)
+      end
+    end
+    @suggestions = @suggestions ? @suggestions : []
+
     @giantbomb_suggestions = []
     @suggestions.each do |suggestion|
       @resultgame = GiantBomb::Game.detail(suggestion.giantbomb_id)
@@ -97,11 +95,11 @@ class Gamelist < ActiveRecord::Base
         end
       end
     end
-    @giantbomb_suggestions 
+    @giantbomb_suggestions
   end
-  
+
   private
-  
+
   def similar_games(resultgame, count)
     @giantbomb_suggestions = []
     resultgame.similar_games.first(count+1).each do |game|

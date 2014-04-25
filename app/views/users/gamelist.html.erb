@@ -1,12 +1,13 @@
 <script>
   $('form').submit(function(e) {
     e.preventDefault();
+    alert("here");
     var valuesToSubmit = $(this).serialize();
-    console.log("here");
     $.ajax({
-        url: $(this).attr('action'),
-        data: valuesToSubmit,
-        dataType: "JSON"
+      type: "POST",
+      url: $(this).attr('action'),
+      data: valuesToSubmit,
+      dataType: "JSON"
     }).success(function(json){
         //act on result.
     });

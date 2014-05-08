@@ -15,6 +15,7 @@
         <% if user_signed_in? %>
           <li class="<%= "active" if current_page?(gamelist_path)%>"><%= link_to "My Games", gamelist_path %></li>
         <% end %>
+        <li class="<%= "active" if current_page?(stats_path)%>"><%= link_to "Site Stats", stats_path %></li>
       </ul>
       <%= form_tag search_path, method: :get, class: "navbar-form navbar-left", role: "search" do %>
         <div class="form-group">
@@ -27,7 +28,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-lg"></i>&nbsp;<%= current_user.username %><b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Profile", profile_path %></li>
+              <li><%= link_to "Profile/Stats", profile_path %></li>
               <li><%= link_to "Settings", settings_path %></li>
               <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
             </ul>

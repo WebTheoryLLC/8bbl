@@ -4,5 +4,9 @@
     <p>Welcome to 8-Bit Bucketlist! <br>
     8BBL allows you to search for games and add them to your collection. From there, you can keep track of what games you have beaten and even get recommendations on new games to play!</p>
   </div>
-  <h3>Put your hands together for our latest user <%= link_to User.last.username, "/profile/#{User.last.username}" %> !</h3>
+  <% if !User.nil? %>
+    <h3>No users (yet!), be the first to register!</h3>
+  <% else %>
+    <h3>Put your hands together for our latest user <%= link_to User.last.username, "/profile/#{User.last.username}" %> !</h3>
+  <% end %>
 </div>

@@ -25,4 +25,33 @@ def facebook
       redirect_to new_user_registration_url
     end
   end
+  
+  def steam
+    auth = env["omniauth.auth"]
+
+    @user = User.find_for_steam_oauth(request.env["omniauth.auth"], current_user)
+    if @user.persisted?
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success"
+      sign_in_and_redirect @user, :event => :authentication
+      set_flash_message(:notice, :success, :kind => "Steam") if is_navigational_format?
+    else
+      session["devise.steam_uid"] = request.env["omniauth.auth"]
+      redirect_to new_user_registration_url
+    end
+  end
+  
+  def twitch
+    auth = env["omniauth.auth"]
+
+    @user = User.find_for_twitch_oauth(request.env["omniauth.auth"], current_user)
+    if @user.persisted?
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success"
+      sign_in_and_redirect @user, :event => :authentication
+      set_flash_message(:notice, :success, :kind => "Twitch") if is_navigational_format?
+    else
+      session["devise.twitch_uid"] = request.env["omniauth.auth"]
+      redirect_to new_user_registration_url
+    end
+  end
+
 end

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :twitter],
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :twitter, :steam, :twitch],
 				 :authentication_keys => [:login]
   after_save :create_game_list
 
@@ -63,6 +63,31 @@ class User < ActiveRecord::Base
 				#user.image = auth.info.image
 			end
 		end
+  end
+  
+  def self.find_for_steam_oauth(auth, signed_in_resource=nil)
+    if signed_in_resource
+      signed_in_resource.update_attributes(:provider => auth.provider, :uid => auth.uid)
+    else
+      User.where(:provider => auth.provider, :uid => auth.uid).first_or_create do |user|
+        user.username = auth.info.nickname
+        user.email = auth.uid+"@steampowered.com"
+        user.password = Devise.friendly_token[0,20]
+        #user.image = auth.info.image
+      end
+    end
+  end
+  
+  def self.find_for_twitch_oauth(auth, signed_in_resource=nil)
+    if signed_in_resource
+      signed_in_resource.update_attributes(:provider => auth.provider, :uid => auth._id)
+    else
+      User.where(:provider => auth.provider, :uid => auth._id).first_or_create do |user|
+        user.username = auth.display_name
+        user.email = auth._id+"@twitch.tv"
+        user.password = Devise.friendly_token[0,20]
+      end
+    end
   end
 
 	def login=(login)

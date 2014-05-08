@@ -32,3 +32,17 @@
     text-align: right;
   }
 }
+
+.login {
+  background: #f8f8f8;
+  border-radius: 10px;
+  padding: 20px;
+  
+  .twitch {
+    opacity: 0.4;
+  }
+  
+  .steam {
+    opacity: 0.4;
+  }
+}

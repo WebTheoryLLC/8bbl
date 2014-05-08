@@ -18,6 +18,8 @@ gem 'giantbomb'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'omniauth-steam'
+gem 'omniauth-twitch', '~> 0.1.2'
 
 gem 'pg'
 

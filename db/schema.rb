@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423060821) do
+ActiveRecord::Schema.define(version: 20140518194733) do
 
   create_table "concepts", force: true do |t|
     t.string   "name"
@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 20140423060821) do
     t.string   "last_sign_in_ip"
     t.string   "provider"
     t.string   "uid"
+    t.string   "steam_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

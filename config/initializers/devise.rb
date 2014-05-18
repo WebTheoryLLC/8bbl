@@ -233,10 +233,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, "467539133345641", "99f9245a2b6a023df605bd2aa0aeefbd"
-  config.omniauth :twitter, "8CufW7T72lUI2xZBznJCQbBrI", "c6INCFsu6Se7nlGXokBa80p8fzSg7zah0pgdjj16bv4vlp4TGc"
-  config.omniauth :steam, "CD42F889F6894A29AC0E75E807FB7E64"
-  config.omniauth :twitch, "sb8gef7zn7nst8itgewc8nwsvcpm1xw"
+  config.omniauth :facebook, ENV["FACEBOOK_CLIENT_ID"], ENV["FACEBOOK_CLIENT_SECRET"]
+  config.omniauth :twitter, ENV["TWITER_CLIENT_ID"], ENV["TWITER_CLIENT_SECRET"]
+  config.omniauth :steamv2, ENV["STEAM_KEY"], :strategy_class => OmniAuth::Strategies::SteamV2
+  config.omniauth :twitch, ENV["TWITCH_CLIENT_ID"], ENV["TWITCH_CLIENT_SECRET"]
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

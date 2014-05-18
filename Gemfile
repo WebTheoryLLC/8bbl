@@ -18,12 +18,14 @@ gem 'giantbomb'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem 'omniauth-steam'
+gem 'omniauth-steamv2'
 gem 'omniauth-twitch', '~> 0.1.2'
 
 gem 'pg'
 
-gem 'rails_12factor'
+group :production do
+  gem 'rails_12factor'
+end
 
 gem 'twitch'
 

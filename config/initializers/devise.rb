@@ -234,7 +234,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, ENV["FACEBOOK_CLIENT_ID"], ENV["FACEBOOK_CLIENT_SECRET"]
-  config.omniauth :twitter, ENV["TWITER_CLIENT_ID"], ENV["TWITER_CLIENT_SECRET"]
+  config.omniauth :twitter, ENV["TWITTER_CLIENT_ID"], ENV["TWITTER_CLIENT_SECRET"]
   config.omniauth :steamv2, ENV["STEAM_KEY"], :strategy_class => OmniAuth::Strategies::SteamV2
   config.omniauth :twitch, ENV["TWITCH_CLIENT_ID"], ENV["TWITCH_CLIENT_SECRET"]
 

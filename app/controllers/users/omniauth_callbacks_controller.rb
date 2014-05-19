@@ -1,6 +1,6 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-skip_before_filter :verify_authenticity_token, :only => [:steamv2]
+skip_before_filter :verify_authenticity_token, :only => [:steamv2, :failure]
 
 def facebook
     # You need to implement the method below in your model (e.g. app/models/user.rb)
@@ -28,11 +28,10 @@ def facebook
       redirect_to new_user_registration_url
     end
   end
-  
+
   def steamv2
-  binding.pry
     auth = env["omniauth.auth"]
-    binding.pry
+
     @user = User.find_for_steam_oauth(request.env["omniauth.auth"], current_user)
     if @user.persisted?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success"
@@ -43,7 +42,7 @@ def facebook
       redirect_to new_user_registration_url
     end
   end
-  
+
   def twitch
     auth = env["omniauth.auth"]
 

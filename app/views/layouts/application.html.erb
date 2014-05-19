@@ -8,12 +8,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="page-wrap">
+  <%= render "layouts/nav" %>
+  <%= render 'layouts/flash' %>
 
-<%= render "layouts/nav" %>
-<%= render 'layouts/flash' %>
-
-<%= yield %>
-
-<!-- <%= render "layouts/footer" %> -->
+  <%= yield %>
+</div>
+<%= render "layouts/footer" %>
 </body>
 </html>

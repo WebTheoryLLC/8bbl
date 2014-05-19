@@ -7,11 +7,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">8-Bit Bucketlist</a>
+      <%= link_to "8-Bit Bucketlist", pages_index_path, class: "navbar-brand" %>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapsed">
       <ul class="nav navbar-nav">
-        <li class="<%= "active" if current_page?(pages_index_path) %>"><%= link_to "Home", pages_index_path %></li>
+        <li class="visible-xs <%= "active" if current_page?(pages_index_path) %>"><%= link_to "Home", pages_index_path %></li>
         <% if user_signed_in? %>
           <li class="<%= "active" if current_page?(gamelist_path)%>"><%= link_to "My Games", gamelist_path %></li>
         <% end %>

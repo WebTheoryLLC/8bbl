@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
 			end
 		end
   end
-  
+
   def self.find_for_steam_oauth(auth, signed_in_resource=nil)
     if signed_in_resource
       signed_in_resource.update_attributes(:provider => auth.provider, :uid => auth.uid)
@@ -76,10 +76,11 @@ class User < ActiveRecord::Base
         user.steam_id = auth.uid
         user.password = Devise.friendly_token[0,20]
         #user.image = auth.info.image
+				#games = Steam.new(auth.uid).games
       end
     end
   end
-  
+
   def self.find_for_twitch_oauth(auth, signed_in_resource=nil)
     if signed_in_resource
       signed_in_resource.update_attributes(:provider => auth.provider, :uid => auth._id)

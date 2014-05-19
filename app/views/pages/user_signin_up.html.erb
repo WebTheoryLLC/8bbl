@@ -1,10 +1,24 @@
 <div class="container">
     <div class="row">
       <div class="col-xs-6 col-sm-4 col-sm-offset-4">
-        <h2>Sign in or authenticate with a provider</h2>
-        
-        <li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %></li>
-        <li><%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %></li>
+        <div class="login">
+          <h2>Sign in</h2>
+          <div class="facebook">
+            <%= link_to image_tag("fbloginxl.png").html_safe, user_omniauth_authorize_path(:facebook) %>
+          </div>
+          <br>
+          <div class="twitter">
+            <%= link_to image_tag("twitterlogin.png").html_safe, user_omniauth_authorize_path(:twitter) %>
+          </div>
+          <br>
+          <div class="steam">
+            <%= link_to image_tag("sits_large_border.png").html_safe, user_omniauth_authorize_path(:steamv2) %>
+          </div>
+          <br>
+          <div class="twitch">
+            <%= link_to image_tag("twitchxl.png").html_safe, user_omniauth_authorize_path(:twitch) %>
+          </div>
+        </div>
       </div>
     </div>
 </div>
